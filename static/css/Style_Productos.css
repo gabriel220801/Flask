@@ -1,0 +1,53 @@
+body{
+    background:black ;
+}
+.contenedor{
+    margin-top: 165px;
+    background: #fff;
+}
+
+
+section {
+    text-align: center;
+    
+}
+
+article {
+    width: 300px;
+    margin: 1em;
+    padding: 1em;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: inline-block;
+    vertical-align: top;
+}
+
+img {
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 1em;
+}
+
+h2 {
+    color: #333;
+}
+
+p {
+    color: #666;
+}
+
+footer {
+    text-align: center;
+    padding: 1em;
+    background-color: #333;
+    color: #fff;
+}
+
+.tricolor {
+    background: linear-gradient(45deg, #0000ff, #ffffff, #ff0000);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline;
+}

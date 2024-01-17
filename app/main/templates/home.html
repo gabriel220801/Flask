@@ -1,0 +1,37 @@
+{%extends 'base.html'%}
+
+{%block title%}Home{%endblock%}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Style_Home.css') }}">
+{% endblock %}
+
+{%block content%}
+
+{% if success_message %}
+<div id="alert-container" class="alert alert-success floating-alert">
+    {{ success_message }} <span>&#128516;</span>
+</div>
+{% endif %}
+
+
+<section class="showcase">    
+    <video src="../static/video/Presentacion.mp4" muted loop autoplay></video>
+    <div class="overlay"></div>
+    <div class="text">
+        <br>
+        <br>
+        <h2>BarberShop</h2>
+        <h3>Style</h3>
+        <p>Tenemos para ti una gran variedad <br> de productos de excelente calidad <br> y a precios inigualables</p>
+        <a href="/acercade">Conocenos</a>
+    </div>
+    <ul class="social">
+        <li><a href="https://www.facebook.com/centrobarberoficial?mibextid=zLoPMf"><img src="https://i.ibb.co/x7P24fL/facebook.png" ></a></li>
+        <li><a href="https://instagram.com/centrobarberoficial?igshid=NGVhN2U2NjQ0Yg=="><img src="https://i.ibb.co/ySwtH4B/instagram.png"></a></li>
+    </ul>
+</section>
+<script src="main.js"></script>
+<script src="../static/js/home.js"></script>
+
+{%endblock%}

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Nosotros
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Style_acercade.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="contenedor">
+        <br>
+        <div style="text-align: center; background: rgb(226, 245, 245); width: 900px; height: 600px; margin: auto;">
+            <h2 style="font-family: 'Times New Roman', Times, serif;">Nuestra historia</h2>
+            <p style="font-family: 'Times New Roman', Times, serif;">
+                Somos una tienda de barbería dedicada a proporcionar productos de alta calidad para el cuidado personal masculino.
+                Nuestro compromiso es ofrecer a nuestros clientes las mejores herramientas, productos y accesorios para que puedan mantener su estilo y apariencia de la mejor manera posible.
+            </p>
+            <p style="font-family: 'Times New Roman', Times, serif;">
+                Nuestra tienda cuenta con una amplia gama de productos, desde maquinillas de afeitar de alta gama hasta productos para el cuidado de la barba y el cabello.
+                También ofrecemos asesoramiento experto para ayudarte a elegir los productos que mejor se adapten a tus necesidades.
+            </p>
+            <p style="font-family: 'Times New Roman', Times, serif;">
+                En Tienda El Barbero, creemos en la importancia de la barbería como un arte y en el impacto positivo que puede tener en la confianza y la autoestima de los hombres.
+                Nuestro equipo está compuesto por apasionados profesionales de la barbería que están aquí para brindarte la mejor experiencia de compra y asesoramiento.
+            </p>
+            
+            <h2 style="font-family: 'Times New Roman', Times, serif;">Nuestro equipo</h2>
+            <p style="font-family: 'Times New Roman', Times, serif;">
+                Contamos con un equipo de profesionales altamente capacitados en diversas áreas para brindar el mejor servicio a nuestros clientes.
+            </p>
+
+            <h2 style="font-family: 'Times New Roman', Times, serif;">Valores</h2>
+            <ul>
+                <li style="font-family: 'Times New Roman', Times, serif;">Calidad</li>
+                <li style="font-family: 'Times New Roman', Times, serif;">Integridad</li>
+                <li style="font-family: 'Times New Roman', Times, serif;">Innovación</li>
+            </ul>
+        </div>
+        <br>
+    </div>
+{% endblock %}

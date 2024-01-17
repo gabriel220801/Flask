@@ -1,0 +1,31 @@
+{% extends 'baseadmin.html' %}
+
+{% block content %}
+<style>
+    .centrado {
+        font-family: 'Times New Roman', Times, serif;
+        text-align: center;
+        max-width: 500px; /* Ajusta el ancho máximo según tus necesidades */
+        margin: 0 auto; /* Esto centrará horizontalmente el div */
+        padding: 20px; /* Añade un espacio interno para mejorar el aspecto */
+        border: 1px solid #ccc; /* Añade un borde para mayor claridad */
+        border-radius: 8px; /* Añade bordes redondeados */
+    }
+
+    
+</style>
+
+    <div class="centrado">
+        <h1>Agregar Nueva Categoria</h1>
+        <form method="post" action="{{ url_for('admin.agregar_categoria') }}" >
+            <!-- Agrega campos según tus necesidades -->
+            <div class="form-group">
+                <label for="nuevo_nombre">Nombre:</label>
+                <input type="text" class="form-control" id="nuevo_nombre" name="nuevo_nombre" required>
+            </div>
+
+
+            <button type="submit" class="btn btn-outline-success mt-3">Agregar Categoria</button>
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block title %}Carrito de Compras{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Style_Carrito.css') }}">
+    <style>
+        /* Agrega estilos CSS adicionales aquí según sea necesario */
+        .fila {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+
+        .card {
+            width: 30%; /* Ajusta el ancho de la tarjeta según tus necesidades */
+            margin-bottom: 20px;
+        }
+
+        .realizar-compra-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .realizar-compra-btn {
+            width: 200px; /* Ajusta el ancho del botón según tus necesidades */
+            padding: 12px;
+            background-color: #3498db; /* Cambia el color de fondo según tus necesidades */
+            color: #fff; /* Cambia el color del texto según tus necesidades */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px; /* Tamaño del texto */
+            transition: background-color 0.3s ease; /* Agrega transición para un efecto suave al pasar el ratón */
+            margin: 0 auto; /* Centro horizontalmente */
+        }
+
+        .realizar-compra-btn:hover {
+            background-color: #2980b9; /* Cambia el color de fondo al pasar el ratón */
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="contenedor">
+        <br>
+        <section class="contenido">
+            <div class="mostrador" id="mostrador">
+                {% for row in carrito|batch(3) %}
+                    <div class="fila">
+                        {% for item in row %}
+                            <div class="card">
+                                <div class="tumb">
+                                    <img src="{{ url_for('static', filename='img/' + item[3]) }}" alt="">
+                                </div>
+                                <div class="details">
+                                    <h4>{{ item[1] }}</h4>
+                                    <p>Precio: ${{ item[2] }}</p>
+                                    <p>Cantidad: {{ item[4] }}</p>
+                                    <input type="checkbox" name="productos_seleccionados" value="{{ item[0] }}">
+                                    <button class="eliminar-btn" data-product-id="{{ item[0] }}">Eliminar</button>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="realizar-compra-container">
+                <button type="submit" class="realizar-compra-btn">Realizar Compra</button>
+            </div>
+        </section>
+        
+    </div>
+
+    <!-- Agrega el bloque de scripts aquí -->
+    {% block scripts %}
+        <script src="{{ url_for('static', filename='js/carrito.js') }}"></script>
+    {% endblock %}
+{% endblock %}

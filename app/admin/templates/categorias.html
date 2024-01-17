@@ -1,0 +1,65 @@
+{% extends 'baseadmin.html' %}
+
+{% block head %}
+    {{ super() }}
+    <!-- Enlaces a los archivos CSS de AdminLTE -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='adminlte/css/adminlte.css') }}">
+    <!-- Otros archivos CSS si es necesario -->
+{% endblock %}
+{% block scripts %}
+    {{ super() }}
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="{{ url_for('static', filename='adminlte/js/adminlte.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Asignar la función de confirmación al clic del botón "Eliminar"
+            $('.eliminarCategoriaBtn').on('click', function () {
+                var id = $(this).data('categoria-id');
+                var url = $(this).data('delete-url');
+
+                var confirmacion = confirm("¿Estás seguro de que quieres eliminar esta Categoria?");
+                if (confirmacion) {
+                    // Utilizamos la URL específica almacenada en el botón
+                    window.location.href = url;
+                }
+            });
+        });
+    </script>
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-3">
+        <h1>Lista de Categorias</h1>
+        <a href="{{ url_for('admin.agregar_categoria') }}">
+            <button class="btn btn-success mt-3 font-lora">Agregar</button>
+        </a>
+        <table class="table table-bordered table-striped mt-3">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for categoria in lista_categorias %}
+                    <tr>
+                        <td>{{ categoria[0] }}</td>
+                        <td>{{ categoria[1] }}</td>
+                        
+                        <td>
+                            <!-- Botones de Editar que dirigen a la página de edición de usuario -->
+                            <a href="{{ url_for('admin.editar_categoria', categoria_id=categoria[0]) }}" class="btn btn-primary">
+                                Editar
+                            </a>
+                            <a href="#" class="btn btn-outline-danger eliminarCategoriaBtn" data-categoria-id="{{ categoria[0] }}" data-delete-url="{{ url_for('admin.eliminar_categoria', categoria_id=categoria[0]) }}">
+                                Eliminar
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

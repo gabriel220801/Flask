@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Style_login.css') }}">
+
+    <title>login - BarberShop Style</title>
+
+        
+</head>
+
+<body>
+    
+    
+    <div class="container" id="container">
+        <div class="form-container sign-up">
+            <form action="{{ url_for('main.crear_registro') }}" method="POST">
+                <h1 style="font-family: 'Times New Roman', Times, serif;">Crear Una Cuenta <br></h1>
+                <input type="text" name="txtNombre" placeholder="Nombre">
+                <input type="number" name="txtTelefono" placeholder="Telefono">
+                <input type="email" name="txtCorreo" placeholder="Correo">
+                <div class="password-container">
+                    <input type="password" name="txtPassword" id="passwordSignUp" placeholder="Contraseña">
+                    <div class="toggle-password" onclick="togglePasswordVisibility('passwordSignUp')">
+                        <i class="fas fa-eye-slash"></i>
+                    </div>
+                </div>
+                <button  type="submit">Registrarse</button>
+                <br>
+                                
+            </form>
+        </div>
+        <div class="form-container sign-in">
+            <form action="{{ url_for('main.login') }}" method="POST">
+
+                <h1 style="font-family: 'Times New Roman', Times, serif;">Iniciar Sesion <br><br></h1>                
+                <input type="email" name="txtCorreo" placeholder="Correo" required>
+                <div class="password-container">
+                <input type="password" name="txtPassword" id="passwordLogin" placeholder="Contraseña">
+                <div class="toggle-password" onclick="togglePasswordVisibility('passwordLogin')">
+                    <i class="fas fa-eye-slash"></i>
+                </div>
+            </div>
+
+                
+                <a href="#">¿Olvidó su contraseña?</a>
+                <button type="submit">Iniciar Sesión</button>
+                <br>
+                                
+                <div class="alert alert-danger" role="alert">
+                    {% if error_message %}
+                        {{ error_message }}
+                    {% endif %}
+                </div>
+                
+            </form>
+        </div>
+
+        <div class="toggle-container">
+            <div class="toggle">
+                <div class="toggle-panel toggle-left">
+                    <h1 style="font-family: 'Times New Roman', Times, serif;">Bienvenido De Nuevo!!</h1>
+                    <p>Estamos Felices de volverte a ver Barbero. Por favor ingresa tus datos personales</p>
+                    <button class="hidden" id="login">Iniciar Sesion</button>
+                </div>
+                <div class="toggle-panel toggle-right">
+                    <h1 style="font-family: 'Times New Roman', Times, serif;">Hola, Barbero!!</h1>
+                    <p>Estamos Felices de verte. Registrate con tus datos personales y compra lo que a ti te guste</p>
+                    <button class="hidden" id="register">Registrarse</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="../static/js/login.js"></script>
+</body>
+
+</html>

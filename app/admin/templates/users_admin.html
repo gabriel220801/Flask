@@ -1,0 +1,49 @@
+{% extends 'baseadmin.html' %}
+
+{% block head %}
+    {{ super() }}
+    <!-- Enlaces a los archivos CSS de AdminLTE -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='adminlte/css/adminlte.css') }}">
+    <!-- Otros archivos CSS si es necesario -->
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-3">
+        <h1>Lista de Usuarios</h1>
+        <table class="table table-bordered table-striped mt-3">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Teléfono</th>
+                    <th>Correo</th>
+                    <th>Rol</th>
+                    <th>Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for usuario in lista_usuarios %}
+                    <tr>
+                        <td>{{ usuario[0] }}</td>
+                        <td>{{ usuario[1] }}</td>
+                        <td>{{ usuario[2] }}</td>
+                        <td>{{ usuario[3] }}</td>
+                        <td>
+                            <!-- Mostrar el rol del usuario -->
+                            {{ usuario[4] }}
+                        </td>
+                        <td>
+                            <!-- Botones de Editar que dirigen a la página de edición de usuario -->
+                            <a href="{{ url_for('admin.editar_usuario', usuario_id=usuario[0]) }}" class="btn btn-primary">
+                                Editar
+                            </a>
+                            <a href="#" class="btn btn-outline-danger eliminarUsuarioBtn" data-usuario-id="{{ usuario[0] }}" data-delete-url="{{ url_for('admin.eliminar_usuario', usuario_id=usuario[0]) }}">
+                                Eliminar
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

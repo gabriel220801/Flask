@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+
+{% block title %}Otros Articulos{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Style_Maquinas.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="contenedor">
+        <br>
+        <section class="contenido">
+            <div class="mostrador" id="mostrador">
+                <div class="fila">
+                    {% for producto in productos %}
+                        <div class="card">
+                            <div class="badge">
+                                Hot
+                            </div>
+                            <div class="tumb">
+                                <img src="{{ url_for('static', filename='img/' + producto[5]) }}" alt="">
+                            </div>
+                            <div class="details">
+                                <span class="category">BarberShop</span>
+                                <h4>
+                                    <a href="">{{ producto[1] }}</a>
+                                </h4>
+                                <p>{{ producto[3] }}</p>
+                                <div class="bottom-details">
+                                    <div class="price">
+                                        $ {{ producto[2] }}
+                                    </div>
+                                    <div class="links">
+                                    
+                                        {% if 'correo' in session %}
+                                            <span style="font-family: 'Times New Roman', Times, serif;">Cant:</span>
+                                            <input type="number" id="cantidadInput{{ producto[0] }}" min="1" max="{{ producto[4] }}">
+                                            <a href="#" class="add-to-cart-btn" data-product-id="{{ producto[0] }}" data-product-name="{{ producto[1] }}" data-product-quantity="{{ producto[4] }}">
+                                                <i class="fa-solid fa-cart-shopping"></i>
+                                            </a>
+                                            <script>
+                                                document.getElementById('cantidadInput{{ producto[0] }}').addEventListener('change', function() {
+                                                    var cantidadInputValue = this.value;
+                                                    if (cantidadInputValue < 0) {
+                                                        alert('No se pueden agregar cantidades negativas');
+                                                        this.value = 1;  
+                                                    }
+                                                });
+                                            </script>
+                                        {% endif %}
+                                        
+                                        <a href="#"><i class="fa-solid fa-heart"></i></a>
+                                    </div>
+                                </div>        
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div style="justify-content: center;" class="pagination">
+                    {{ pagination.links }}
+                </div>
+            </div>
+        </section>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Agregar al carrito
+            document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault();
+
+                    const productId = this.getAttribute('data-product-id');
+                    const productName = this.getAttribute('data-product-name');
+                    const productQuantityInput = document.getElementById('cantidadInput' + productId);
+                    const productQuantity = productQuantityInput.value;
+
+                    // Verificar que la cantidad no sea negativa
+                    if (productQuantity < 0) {
+                        alert('No se pueden agregar cantidades negativas');
+                        return;
+                    }
+
+                    // Realizar una solicitud para agregar al carrito
+                    fetch('/agregar-al-carrito', {
+                        method: 'POST',
+                        body: new URLSearchParams({
+                            'id_producto': productId,
+                            'cantidad': productQuantity
+                        }),
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        alert(data.message);
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+                });
+            });
+        });
+    </script>
+{% endblock %}

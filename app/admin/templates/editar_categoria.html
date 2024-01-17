@@ -1,0 +1,44 @@
+{% extends 'baseadmin.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='adminlte/css/adminlte.css') }}"> 
+{% endblock %}
+
+{% block scripts %}
+    
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="{{ url_for('static', filename='adminlte/js/adminlte.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock %}
+
+{% block content %}
+<style>
+    .centrado {
+        font-family: 'Times New Roman', Times, serif;
+        text-align: center;
+        max-width: 400px; /* Ajusta el ancho máximo según tus necesidades */
+        margin: 0 auto; /* Esto centrará horizontalmente el div */
+        padding: 20px; /* Añade un espacio interno para mejorar el aspecto */
+        border: 1px solid #ccc; /* Añade un borde para mayor claridad */
+        border-radius: 8px; /* Añade bordes redondeados */
+    }
+
+    
+</style>
+
+<div class="centrado">
+    <h1 class="edit-cat-title">Editar Categoria</h1>
+    <form method="post" class="edit-cat-form">
+        
+        <div class="form-label">
+            <label for="nuevo_nombre">Nombre:</label>
+            <input class="form-control" type="text" id="nuevo_nombre" name="nuevo_nombre" value="{{ categoria[1] }}" required>
+        </div>
+
+
+        <button type="submit" class="edit-cat-btn btn btn-outline-success">
+            <i class="fas fa-save"></i> Guardar Cambios
+        </button>
+    </form>
+</div>
+{% endblock %}

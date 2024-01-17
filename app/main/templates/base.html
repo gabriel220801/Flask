@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- Estilos -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Style_Home.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Style_Base.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Style_Productos.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Style_Maquinas.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Style_Acercade.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/Style_Contacto.css') }}">
+
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+
+  <header>
+    <img src="../static/img/logo.png" class="log">
+    <div class="container">
+        <nav>
+            <ul>
+                <a href="/"><li>Inicio</li></a>                    
+                <a href="/productos"><li>Productos</li></a>
+                <a href="/acercade"><li>Nosotros</li></a>
+                {% if 'correo' in session %}
+                    <li>{{ session['nombre'] }}</li>
+                    <a href="/logout"><li>Cerrar Sesión</li></a>
+                    <a href="/ver-carrito" id="ver-carrito-btn"><i class="fas fa-shopping-cart"></i></a>
+                {% else %}
+                    <a href="/login" ><li>Iniciar Sesión</li></a>
+                {% endif %}               
+            </ul>
+        </nav>
+    </div>
+  </header>
+
+   
+    
+    <div class="wrapper">
+        {% block content %}{% endblock %}
+        
+    </div>  
+    
+    
+    <div class="footer">
+        <div class="footer-content">
+          <div class="footer-column">
+            <div class="footer-text">
+              <p>Creadores:</p>
+              <p>Jose Gabriel Nastul - narvaezgabriel123@gmail.com</p>
+              <p>Jeison Montenegro - jeisonmontenegro@gmail.com</p>
+            </div>
+          </div>
+          <div class="footer-column">
+            <div class="footer-icons">
+              <a href="https://www.facebook.com/centrobarberoficial?mibextid=zLoPMf" class="icon-link" target="_blank"><i class="fab fa-facebook"></i></a>
+              <a href="https://instagram.com/centrobarberoficial?igshid=NGVhN2U2NjQ0Yg==" class="icon-link" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+            <div class="footer-text">
+              <p style="font-family: 'Times New Roman', Times, serif;">&copy; 2023 BarberShop Style</p>
+              <p>Correo: barbershop_style@gmail.com</p>
+              <p>Celular: 3005710315</p>
+            </div>
+          </div>
+          <div class="footer-column">
+            <div class="footer-text">
+              <p>Visita nuestra tienda de productos para barberos de calidad.</p>
+              <p>Suscríbete a nuestro pagina para ofertas exclusivas.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+</body>
